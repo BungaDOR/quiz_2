@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -9,12 +10,34 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   bool isLoading = false;
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   // function
 Future<void> register()async{
  setState(() {
    isLoading = true;
- }); 
+ });
+
+ Map<String,dynamic> daftar = {
+  "firstName":firstNameController.text,
+  "lastName":lastNameController.text,
+  "age":ageController.text,
+  "email":emailController.text
+ };
+ var uri = Uri.parse("https://dummyjson.com/auth/login");
+ try {
+   var respon = await http.post(uri,body: daftar);
+   if(respon.statusCode == 200){
+    Navigator.pushReplacementNamed(context, "/todoList");
+   }else{
+    throw Exception("Periksa kembali");
+   }
+ } catch (e) {
+   
+ }
 }
   @override
   Widget build(BuildContext context) {
