@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ujian_2410910040023_api/register/register.dart';
+import 'package:ujian_2410910040023_api/halaman/register.dart';
+import 'package:ujian_2410910040023_api/halaman/todoList.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        "/":(context)=>Register()
+        "/":(context)=>Register(),
+        "/todoList":(context)=>Todolist(),
       },
+      initialRoute: "/",
     );
   }
 }

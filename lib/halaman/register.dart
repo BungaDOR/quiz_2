@@ -27,16 +27,24 @@ Future<void> register()async{
   "age":ageController.text,
   "email":emailController.text
  };
- var uri = Uri.parse("https://dummyjson.com/auth/login");
+ var uri = Uri.parse("https://dummyjson.com/users/add");
  try {
    var respon = await http.post(uri,body: daftar);
-   if(respon.statusCode == 200){
+   if(respon.statusCode == 201){
     Navigator.pushReplacementNamed(context, "/todoList");
+        //ScaffoldMessenger.of(context).showSnackBar(
+      //SnackBar(content: Text("Berhasil Mendaftar:")));
    }else{
     throw Exception("Periksa kembali");
    }
  } catch (e) {
-   
+   ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(e.toString()))
+   );
+ }finally{
+  setState(() {
+    isLoading = false;
+  });
  }
 }
   @override
@@ -56,24 +64,28 @@ Future<void> register()async{
               ),),
               SizedBox(height: 40,),
               TextFormField(
+                controller: firstNameController,
                 decoration: InputDecoration(
                   hintText: "Masukkan nama pertama",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
                 ),
               ),
               TextFormField(
+                controller: lastNameController,
                 decoration: InputDecoration(
                   hintText: "Masukkan nama akhir",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
                 ),
               ),
               TextFormField(
+                controller: ageController,
                 decoration: InputDecoration(
-                  hintText: "Masukkan USia",
+                  hintText: "Masukkan Usia",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
                 ),
               ),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: "Masukkan alamat Email",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
