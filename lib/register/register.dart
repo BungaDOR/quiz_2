@@ -8,7 +8,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  
+  bool isLoading = false;
+
+  // function
+Future<void> register()async{
+ setState(() {
+   isLoading = true;
+ }); 
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +54,20 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                   hintText: "Masukkan alamat Email",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 232, 159, 71),
+                      foregroundColor: Colors.white
+                  ),
+                  onPressed: isLoading ? null : register,
+                    child: isLoading ? CircularProgressIndicator(
+                      color: Colors.grey,
+                    ) : Text("Daftar", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                 ),
               ),
             ],
