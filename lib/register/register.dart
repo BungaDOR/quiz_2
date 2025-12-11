@@ -20,7 +20,35 @@ class _RegisterState extends State<Register> {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,
             children: [
-              Text("data")
+              Text("SILAHKAN REGISTRASI",style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),),
+              SizedBox(height: 40,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Masukkan nama pertama",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Masukkan nama akhir",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Masukkan USia",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Masukkan alamat Email",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))
+                ),
+              ),
             ],
           ),),
       ),
